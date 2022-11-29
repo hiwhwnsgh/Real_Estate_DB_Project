@@ -27,6 +27,8 @@ public class SignUp extends JFrame {
 	private JTextField hopeCityTextField;
 	private JLabel CheckPwLabel;
 	private JTextField checkPwTextField;
+	private JComboBox comboBox;
+	private String[] PriceString = {"만원","억원"};
 	
 	public SignUp() {
 		initialize();
@@ -35,7 +37,7 @@ public class SignUp extends JFrame {
 	// 프레임 초기화
 	private void initialize() {
 		frame = new JFrame("회원가입");
-		frame.setBounds(100, 100, 500, 577);
+		frame.setBounds(100, 100, 439, 577);
 		frame.setVisible(true);
 		frame.getContentPane().setLayout(null);
 		contentPane = new JPanel();
@@ -70,27 +72,27 @@ public class SignUp extends JFrame {
 		frame.getContentPane().add(conditionLabel);
 		
 		JComboBox conditionComboBox = new JComboBox(ConditionString);
-		conditionComboBox.setBounds(45, 425, 323, 23);
+		conditionComboBox.setBounds(45, 425, 250, 23);
 		frame.getContentPane().add(conditionComboBox);
 		
 		idTextField = new JTextField();
-		idTextField.setBounds(45, 125, 323, 21);
+		idTextField.setBounds(45, 125, 250, 21);
 		frame.getContentPane().add(idTextField);
 		idTextField.setColumns(10);
 		
 		pwTextField = new JTextField();
 		pwTextField.setColumns(10);
-		pwTextField.setBounds(45, 185, 323, 21);
+		pwTextField.setBounds(45, 185, 250, 21);
 		frame.getContentPane().add(pwTextField);
 		
 		capitalTextField = new JTextField();
 		capitalTextField.setColumns(10);
-		capitalTextField.setBounds(45, 305, 323, 21);
+		capitalTextField.setBounds(45, 305, 250, 21);
 		frame.getContentPane().add(capitalTextField);
 		
 		hopeCityTextField = new JTextField();
 		hopeCityTextField.setColumns(10);
-		hopeCityTextField.setBounds(45, 365, 323, 21);
+		hopeCityTextField.setBounds(45, 365, 250, 21);
 		frame.getContentPane().add(hopeCityTextField);
 		
 		CheckPwLabel = new JLabel("비밀번호 재확인");
@@ -99,16 +101,20 @@ public class SignUp extends JFrame {
 		
 		checkPwTextField = new JTextField();
 		checkPwTextField.setColumns(10);
-		checkPwTextField.setBounds(45, 245, 323, 21);
+		checkPwTextField.setBounds(45, 245, 250, 21);
 		frame.getContentPane().add(checkPwTextField);
 		
 		JButton IdCheckButton = new JButton("중복 확인");
-		IdCheckButton.setBounds(383, 124, 91, 23);
+		IdCheckButton.setBounds(307, 124, 91, 23);
 		frame.getContentPane().add(IdCheckButton);
 		
 		JButton SignUpButton = new JButton("가입하기");
-		SignUpButton.setBounds(45, 475, 323, 40);
+		SignUpButton.setBounds(45, 475, 250, 40);
 		frame.getContentPane().add(SignUpButton);
+		
+		comboBox = new JComboBox(PriceString);
+		comboBox.setBounds(307, 304, 91, 23);
+		frame.getContentPane().add(comboBox);
 		
 		
 	}
