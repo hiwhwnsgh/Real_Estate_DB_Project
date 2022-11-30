@@ -51,14 +51,11 @@ class mainJPanel extends JPanel {
 class userPanel extends JPanel {
 	private JButton UserEditButton;
 	private MainPanel frame;
-	private JLabel l;
 	public userPanel(MainPanel frame) {
 		this.frame = frame;
 		UserEditButton = new JButton("회원 정보 수정");
 		UserEditButton.setFont(new Font("맑은 고딕", Font.BOLD, 22));
-		UserEditButton.setBounds(60, 295, 264, 60);
-		l = new JLabel("안녕");
-		UserEditButton.setBounds(20, 150, 264, 60);
+		UserEditButton.setBounds(60, 295, 264, 200);
 		add(UserEditButton);
 	}
 

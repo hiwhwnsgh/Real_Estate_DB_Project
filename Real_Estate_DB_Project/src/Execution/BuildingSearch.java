@@ -9,9 +9,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
 
 public class BuildingSearch extends JFrame {
 
@@ -79,7 +82,23 @@ public class BuildingSearch extends JFrame {
 		scrollPane.setBounds(18, 196, 400, 275);
 		contentPane.add(scrollPane);
 		
+		JRadioButton UpradioButton = new JRadioButton("높은순");
+		UpradioButton.setBounds(265, 145, 68, 23);
+		contentPane.add(UpradioButton);
+		
+		JRadioButton DownRadioButton = new JRadioButton("낮은순");
+		DownRadioButton.setBounds(193, 145, 68, 23);
+		DownRadioButton.setSelected(true);
+		contentPane.add(DownRadioButton);
+		
+		ButtonGroup bg = new ButtonGroup();
+		bg.add(DownRadioButton);
+		bg.add(DownRadioButton);
+		
+		JButton SearchButton = new JButton("조회");
+		SearchButton.setBounds(341, 163, 71, 23);
+		contentPane.add(SearchButton);
+		
 		
 	}
-
 }
