@@ -13,6 +13,8 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JScrollPane;
@@ -24,17 +26,17 @@ public class BuildingCondition extends JFrame {
 	private JFrame frame;
 	private JScrollPane brokerScroll;
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTable brokerTable;
 	private String[] brokerHeader = { "이름", "전화번호", "위치" };
 	private String[] buildingHeader = {"건물형태","주소","계약조건"};
-	private String[] brokerComboBox = {"전체","지역"};
+	private String[] RegionString = {"전체","서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원", "제주"};
 	private int [] columnsSize = {90,150,165};
 	private JScrollPane BuildingScroll;
 	private JTable buildingTable;
 	private DefaultTableModel brokerModel;
 	private DefaultTableModel buildingModel;
 	private DB_Execution dExecution;
+	private JComboBox comboBox;
 	private Vector<Broker> vBroker = new Vector<>();
 	public BuildingCondition() throws SQLException {
 		initialize();
@@ -49,18 +51,14 @@ public class BuildingCondition extends JFrame {
 		contentPane.setLayout(null);
 		frame.getContentPane().add(contentPane);
 
-		JComboBox comboBox = new JComboBox(brokerComboBox);
-		comboBox.setBounds(12, 10, 82, 29);
+		comboBox = new JComboBox(RegionString);
+		comboBox.setBounds(12, 31, 326, 21);
 		contentPane.add(comboBox);
 
-		textField = new JTextField();
-		textField.setBounds(106, 11, 232, 28);
-		contentPane.add(textField);
-		textField.setColumns(10);
-
-		JButton SeacrchButton = new JButton("검색");
-		SeacrchButton.setBounds(350, 10, 62, 29);
-		contentPane.add(SeacrchButton);
+		JButton SearchButton = new JButton("검색");
+		SearchButton.setBounds(350, 31, 62, 21);
+		SearchButton.addActionListener(new RegionSearch());
+		contentPane.add(SearchButton);
 		brokerModel = new DefaultTableModel(brokerHeader,0){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {
@@ -86,16 +84,30 @@ public class BuildingCondition extends JFrame {
 		BuildingScroll = new JScrollPane(buildingTable);
 		BuildingScroll.setBounds(454, 64, 400, 284);
 		contentPane.add(BuildingScroll);
-		BrokerTable();
 		
 	}
-	public void BrokerTable() throws SQLException {
-		dExecution = new DB_Execution();
-		vBroker = dExecution.BrokerSearch();
-		for(int i=0;i<vBroker.size();i++) {
-			Object obj[] = {vBroker.get(i).getName(),vBroker.get(i).getPhoneNumber(),vBroker.get(i).getAddress()};
-			brokerModel.addRow(obj);
+	class RegionSearch implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			String Regionstr = comboBox.getSelectedItem().toString();
+			String sql;
+			if(Regionstr.equals("전체")) {
+				sql = "select 이름,전화번호,중개소위치 from 중개사";
+			}
+			else {
+				sql = "select 이름,전화번호,중개소위치 from 중개사 where \"중개소위치\" like '"+Regionstr+"%'";
+			}
+			dExecution = new DB_Execution();
+			try {
+				vBroker = dExecution.BrokerSearch(sql);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			brokerModel.setNumRows(0);
+			System.out.println(vBroker.size());
+			for(int i=0;i<vBroker.size();i++) {
+				Object obj[] = {vBroker.get(i).getName(),vBroker.get(i).getPhoneNumber(),vBroker.get(i).getAddress()};
+				brokerModel.addRow(obj);
+			}
 		}
-		
 	}
 }
