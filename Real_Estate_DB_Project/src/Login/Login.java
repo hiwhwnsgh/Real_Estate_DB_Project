@@ -72,6 +72,7 @@ public class Login extends JFrame {
 			}			
 		});
 	}
+	
 	class HintTextField extends JTextField {  
 
 		Font gainFont = new Font("Tahoma", Font.PLAIN, 11);  

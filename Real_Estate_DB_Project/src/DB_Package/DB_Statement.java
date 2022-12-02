@@ -36,7 +36,7 @@ public class DB_Statement {
 			building = new Building();
 			building.setShape(rs.getString(i++));
 			building.setAddress(rs.getString(i++));
-			building.setSellerCondition(rs.getString(i));
+			building.getSeller().setCondition(rs.getString(i));
 			i=1;
 			VBuilding.add(building);
 		}

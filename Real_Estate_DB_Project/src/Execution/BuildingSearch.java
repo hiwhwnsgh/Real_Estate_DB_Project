@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class BuildingSearch extends JFrame {
 
@@ -85,6 +87,7 @@ public class BuildingSearch extends JFrame {
 		
 		JRadioButton DownRadioButton = new JRadioButton("낮은순");
 		DownRadioButton.setBounds(193, 145, 68, 23);
+		DownRadioButton.setSelected(true);
 		contentPane.add(DownRadioButton);
 		
 		ButtonGroup bg = new ButtonGroup();
@@ -92,10 +95,15 @@ public class BuildingSearch extends JFrame {
 		bg.add(UpRadioButton);
 		
 		JButton SearchButton = new JButton("조회");
-		SearchButton.setBounds(18, 178, 71, 23);
+		SearchButton.setBounds(18, 178, 167, 23);
 		contentPane.add(SearchButton);
 		
 		JButton cancelButton = new JButton("닫기");
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		cancelButton.setBounds(321, 500, 97, 23);
 		contentPane.add(cancelButton);
 		

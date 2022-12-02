@@ -44,6 +44,5 @@ class DB_Connect {
 		} else {
 			return null;
 		}
-
 	}
 }

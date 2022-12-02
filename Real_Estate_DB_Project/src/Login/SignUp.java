@@ -114,7 +114,5 @@ public class SignUp extends JFrame {
 		JComboBox regionComboBox = new JComboBox(RegionString);
 		regionComboBox.setBounds(45, 370, 250, 23);
 		frame.getContentPane().add(regionComboBox);
-		
-		
 	}
 }

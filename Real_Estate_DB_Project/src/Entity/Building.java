@@ -32,9 +32,6 @@ public class Building {
 	public void setCompany(String Company) {
 		this.Company = Company;
 	}
-	public void setSellerCondition(String condtion) {
-		seller.setCondition(condtion);
-	}
 	public Seller getSeller() {
 		return seller;
 	}
@@ -44,5 +41,4 @@ public class Building {
 	public String getAddress() {
 		return Address;
 	}
-	
 }
