@@ -60,18 +60,14 @@ public class BuildingCondition extends JFrame {
 		;
 		brokerTable = new JTable(model);
 		brokerTable.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		for(int i = 0;i<3;i++) {
-			brokerTable.getColumnModel().getColumn(i).setMaxWidth(columnsSize[i]);
-	        brokerTable.getColumnModel().getColumn(i).setMinWidth(columnsSize[i]);
-	        brokerTable.getColumnModel().getColumn(i).setWidth(columnsSize[i]);
-		}
 		brokerScroll = new JScrollPane(brokerTable);
 		brokerScroll.setBounds(12, 62, 400, 284);
 		brokerScroll.setPreferredSize(new Dimension(500, 90));
 		contentPane.add(brokerScroll);
+		
+		
 		model.setDataVector(null, buildingHeader);
 		buildingTable = new JTable(model);
-		
 		BuildingScroll = new JScrollPane(buildingTable);
 		BuildingScroll.setBounds(454, 64, 400, 284);
 		contentPane.add(BuildingScroll);

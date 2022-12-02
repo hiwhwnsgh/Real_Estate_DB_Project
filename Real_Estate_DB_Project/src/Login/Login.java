@@ -33,11 +33,11 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
 		
-		JLabel lblNewLabel = new JLabel("LOGIN");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 22));
-		lblNewLabel.setBounds(120, 27, 101, 49);
-		contentPane.add(lblNewLabel);
+		JLabel loginLabel = new JLabel("LOGIN");
+		loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		loginLabel.setFont(new Font("맑은 고딕", Font.BOLD, 22));
+		loginLabel.setBounds(120, 27, 101, 49);
+		contentPane.add(loginLabel);
 		
 		ID_textField = new HintTextField("ID");
 		ID_textField.setBounds(50, 112, 175, 27);

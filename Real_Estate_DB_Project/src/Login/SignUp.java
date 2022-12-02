@@ -10,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.DefaultComboBoxModel;
 
 public class SignUp extends JFrame {
 
@@ -24,12 +25,11 @@ public class SignUp extends JFrame {
 	private JTextField idTextField;
 	private JTextField pwTextField;
 	private JTextField capitalTextField;
-	private JTextField hopeCityTextField;
 	private JLabel CheckPwLabel;
 	private JTextField checkPwTextField;
 	private JComboBox comboBox;
 	private String[] PriceString = {"만원","억원"};
-	
+	private String[] RegionString = {"서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원", "제주"};
 	public SignUp() {
 		initialize();
 	}
@@ -90,11 +90,6 @@ public class SignUp extends JFrame {
 		capitalTextField.setBounds(45, 305, 250, 21);
 		frame.getContentPane().add(capitalTextField);
 		
-		hopeCityTextField = new JTextField();
-		hopeCityTextField.setColumns(10);
-		hopeCityTextField.setBounds(45, 365, 250, 21);
-		frame.getContentPane().add(hopeCityTextField);
-		
 		CheckPwLabel = new JLabel("비밀번호 재확인");
 		CheckPwLabel.setBounds(45, 225, 125, 15);
 		frame.getContentPane().add(CheckPwLabel);
@@ -115,6 +110,10 @@ public class SignUp extends JFrame {
 		comboBox = new JComboBox(PriceString);
 		comboBox.setBounds(307, 304, 91, 23);
 		frame.getContentPane().add(comboBox);
+		
+		JComboBox regionComboBox = new JComboBox(RegionString);
+		regionComboBox.setBounds(45, 370, 250, 23);
+		frame.getContentPane().add(regionComboBox);
 		
 		
 	}
