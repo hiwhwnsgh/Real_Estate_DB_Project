@@ -18,7 +18,7 @@ public class DB_Execution {
 			broker = new Broker();
 			broker.setBrokerId(rs.getString(i++));
 			broker.setName(rs.getString(i++));
-			broker.setCount(i++);
+			broker.setCount(rs.getInt(i++));
 			broker.setAddress(rs.getString(i++));
 			broker.setPhoneNumber(rs.getString(i));
 			i = 1;
@@ -29,19 +29,15 @@ public class DB_Execution {
 
 	public Vector BuildingSearch(String sqlQuery) throws SQLException {
 		rs = dbConnect.resultExecuteQuery(sqlQuery);
-		i = 2;
+		i = 1;
 		Vector<Building> VBuilding = new Vector<>();
 		Building building;
 		while (rs.next()) {
 			building = new Building();
-			building.setAddress(rs.getString(i++));
-			building.setCompletionTime(rs.getInt(i++));
 			building.setShape(rs.getString(i++));
-			building.setSellPrice(rs.getInt(i++));
-			building.setCompany(rs.getString(i++));
-			building.setSellerId(rs.getString(i++));
-			building.setBrokerId(rs.getString(i++));
-			i=2;
+			building.setAddress(rs.getString(i++));
+			building.setSellerCondition(rs.getString(i));
+			i=1;
 			VBuilding.add(building);
 		}
 		return VBuilding;

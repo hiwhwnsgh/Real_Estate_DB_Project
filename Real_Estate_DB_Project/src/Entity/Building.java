@@ -1,5 +1,7 @@
 package Entity;
 
+import java.util.Vector;
+
 public class Building {
 	private String Address;
 	private int CompletionTime;
@@ -8,6 +10,7 @@ public class Building {
 	private String Company;
 	private String BrokerId;
 	private String SellerId;
+	private Seller seller = new Seller();
 	public void setAddress(String Address) {
 		this.Address = Address;
 	}
@@ -29,10 +32,17 @@ public class Building {
 	public void setCompany(String Company) {
 		this.Company = Company;
 	}
+	public void setSellerCondition(String condtion) {
+		seller.setCondition(condtion);
+	}
+	public Seller getSeller() {
+		return seller;
+	}
 	public String getShape() {
 		return Shape;
 	}
 	public String getAddress() {
 		return Address;
 	}
+	
 }

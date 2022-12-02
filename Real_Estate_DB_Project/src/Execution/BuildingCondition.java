@@ -64,6 +64,8 @@ public class BuildingCondition extends JFrame {
 		};
 		;
 		brokerTable = new JTable(brokerModel);
+		brokerTable.getColumnModel().getColumn(0).setMaxWidth(80);
+		brokerTable.getColumnModel().getColumn(1).setMaxWidth(500);
 		brokerTable.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		brokerScroll = new JScrollPane(brokerTable);
 		brokerScroll.setBounds(12, 62, 400, 284);
@@ -113,7 +115,7 @@ public class BuildingCondition extends JFrame {
 			int clickedTableRow = buildingTable.getSelectedRow(); // 행
 			int clickedTableColumn = buildingTable.getSelectedColumn();// 필드
 			brokerId = brokerList.get(clickedTableRow).getId();
-			sql = "select * from 건물 where \"중개사ID\" = '"+ brokerId+"'";
+			sql = "select 건물.건물형태,건물.주소,임대인.계약조건 from 임대인,건물 where 건물.\"판매자ID\" = 임대인.\"판매자ID\" and 건물.\"중개사ID\" = '"+ brokerId+"'";
 			try {
 				buildingList = dExecution.BuildingSearch(sql);
 			} catch (SQLException e1) {
@@ -121,7 +123,7 @@ public class BuildingCondition extends JFrame {
 			}
 			buildingModel.setNumRows(0);
 			for(int i=0;i<buildingList.size();i++) {
-				Object obj[] = {buildingList.get(i).getShape(),buildingList.get(i).getAddress()};
+				Object obj[] = {buildingList.get(i).getShape(),buildingList.get(i).getAddress(),buildingList.get(i).getSeller().getCondition()};
 				buildingModel.addRow(obj);
 			}
 
