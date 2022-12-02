@@ -30,7 +30,7 @@ public class BuildingCondition extends JFrame {
 	private JTable buildingTable;
 	private DefaultTableModel brokerModel;
 	private DefaultTableModel buildingModel;
-	private DB_Execution dExecution = new DB_Execution();
+	private DB_Statement dExecution = new DB_Statement();
 	private JComboBox comboBox;
 	private Vector<Broker> brokerList = new Vector<>();
 	private Vector<Building> buildingList = new Vector<>();
@@ -64,8 +64,6 @@ public class BuildingCondition extends JFrame {
 		};
 		;
 		brokerTable = new JTable(brokerModel);
-		brokerTable.getColumnModel().getColumn(0).setMaxWidth(80);
-		brokerTable.getColumnModel().getColumn(1).setMaxWidth(500);
 		brokerTable.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		brokerScroll = new JScrollPane(brokerTable);
 		brokerScroll.setBounds(12, 62, 400, 284);
@@ -126,8 +124,6 @@ public class BuildingCondition extends JFrame {
 				Object obj[] = {buildingList.get(i).getShape(),buildingList.get(i).getAddress(),buildingList.get(i).getSeller().getCondition()};
 				buildingModel.addRow(obj);
 			}
-
-			
 		}
 	}
 }

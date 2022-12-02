@@ -39,7 +39,6 @@ class DB_Connect {
 	}
 	public Connection getConnection() {
 		// PreparedStatement이용해 SQL 작성할 경우 Connection 객체가 필요해 만든 메소드
-
 		if (conn != null) {
 			return conn;
 		} else {

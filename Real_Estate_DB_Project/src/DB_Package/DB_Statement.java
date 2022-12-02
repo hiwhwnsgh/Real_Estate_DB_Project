@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.*;
 import Entity.*;
 
-public class DB_Execution {
+public class DB_Statement {
 	DB_Connect dbConnect = new DB_Connect();
 	ResultSet rs = null;
 	int i;

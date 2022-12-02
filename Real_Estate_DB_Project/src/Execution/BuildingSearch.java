@@ -24,13 +24,14 @@ public class BuildingSearch extends JFrame {
 	private String[] ConditionString = {"월세","전세","매매"};
 	private String[] PriceString = {"만원","억원"};
 	private String[] buildingHeader = {"이름","주소","조건","가격"};
+	private String[] RegionString = {"전체","서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원", "제주"};
 	private JTable table;
 	public BuildingSearch() {
 		initialize();
 	}
 	private void initialize() {
 		frame = new JFrame("건물 검색");
-		frame.setBounds(100, 100, 452, 520);
+		frame.setBounds(100, 100, 450, 570);
 		frame.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -41,20 +42,16 @@ public class BuildingSearch extends JFrame {
 		areaLabel.setBounds(18, 10, 57, 15);
 		contentPane.add(areaLabel);
 		
-		JComboBox cityComboBox = new JComboBox();
-		cityComboBox.setBounds(18, 35, 83, 23);
+		JComboBox cityComboBox = new JComboBox(RegionString);
+		cityComboBox.setBounds(18, 35, 101, 23);
 		contentPane.add(cityComboBox);
-		
-		JComboBox guComboBox = new JComboBox();
-		guComboBox.setBounds(119, 35, 83, 23);
-		contentPane.add(guComboBox);
 		
 		JLabel conditionLabel = new JLabel("조건");
 		conditionLabel.setBounds(18, 68, 57, 15);
 		contentPane.add(conditionLabel);
 		
 		JComboBox conditionComboBox = new JComboBox(ConditionString);
-		conditionComboBox.setBounds(18, 93, 83, 23);
+		conditionComboBox.setBounds(18, 93, 101, 23);
 		contentPane.add(conditionComboBox);
 		
 		JLabel PriceLabel = new JLabel("가격");
@@ -79,7 +76,7 @@ public class BuildingSearch extends JFrame {
 		table = new JTable(model);
 		table.setBounds(0, 0, 1, 1);
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(18, 196, 400, 275);
+		scrollPane.setBounds(18, 211, 400, 275);
 		contentPane.add(scrollPane);
 		
 		JRadioButton UpRadioButton = new JRadioButton("높은순");
@@ -95,8 +92,12 @@ public class BuildingSearch extends JFrame {
 		bg.add(UpRadioButton);
 		
 		JButton SearchButton = new JButton("조회");
-		SearchButton.setBounds(341, 163, 71, 23);
+		SearchButton.setBounds(18, 178, 71, 23);
 		contentPane.add(SearchButton);
+		
+		JButton cancelButton = new JButton("닫기");
+		cancelButton.setBounds(321, 500, 97, 23);
+		contentPane.add(cancelButton);
 		
 		
 	}
