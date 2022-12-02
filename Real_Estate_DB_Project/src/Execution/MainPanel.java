@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,7 +31,12 @@ class mainJPanel extends JPanel {
 		ConditionButton.setBounds(60, 55, 264, 60);
 		ConditionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new BuildingCondition();
+				try {
+					new BuildingCondition();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}			
 		});
 		add(ConditionButton);

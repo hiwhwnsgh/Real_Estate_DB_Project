@@ -13,7 +13,12 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
+import java.sql.SQLException;
+
 import javax.swing.JScrollPane;
+import DB_Package.*;
+import Entity.*;
+import java.util.*;
 
 public class BuildingCondition extends JFrame {
 	private JFrame frame;
@@ -23,16 +28,19 @@ public class BuildingCondition extends JFrame {
 	private JTable brokerTable;
 	private String[] brokerHeader = { "이름", "전화번호", "위치" };
 	private String[] buildingHeader = {"건물형태","주소","계약조건"};
+	private String[] brokerComboBox = {"전체","지역"};
 	private int [] columnsSize = {90,150,165};
 	private JScrollPane BuildingScroll;
 	private JTable buildingTable;
 	private DefaultTableModel brokerModel;
 	private DefaultTableModel buildingModel;
-	public BuildingCondition() {
+	private DB_Execution dExecution;
+	private Vector<Broker> vBroker = new Vector<>();
+	public BuildingCondition() throws SQLException {
 		initialize();
 	}
 
-	private void initialize() {
+	private void initialize() throws SQLException {
 		frame = new JFrame("메인화면");
 		frame.setBounds(100, 100, 880, 395);
 		frame.setVisible(true);
@@ -41,7 +49,7 @@ public class BuildingCondition extends JFrame {
 		contentPane.setLayout(null);
 		frame.getContentPane().add(contentPane);
 
-		JComboBox comboBox = new JComboBox();
+		JComboBox comboBox = new JComboBox(brokerComboBox);
 		comboBox.setBounds(12, 10, 82, 29);
 		contentPane.add(comboBox);
 
@@ -78,7 +86,16 @@ public class BuildingCondition extends JFrame {
 		BuildingScroll = new JScrollPane(buildingTable);
 		BuildingScroll.setBounds(454, 64, 400, 284);
 		contentPane.add(BuildingScroll);
+		BrokerTable();
 		
+	}
+	public void BrokerTable() throws SQLException {
+		dExecution = new DB_Execution();
+		vBroker = dExecution.BrokerSearch();
+		for(int i=0;i<vBroker.size();i++) {
+			Object obj[] = {vBroker.get(i).getName(),vBroker.get(i).getPhoneNumber(),vBroker.get(i).getAddress()};
+			brokerModel.addRow(obj);
+		}
 		
 	}
 }
