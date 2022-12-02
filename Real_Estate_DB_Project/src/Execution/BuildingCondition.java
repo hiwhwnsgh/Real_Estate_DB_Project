@@ -26,6 +26,8 @@ public class BuildingCondition extends JFrame {
 	private int [] columnsSize = {90,150,165};
 	private JScrollPane BuildingScroll;
 	private JTable buildingTable;
+	private DefaultTableModel brokerModel;
+	private DefaultTableModel buildingModel;
 	public BuildingCondition() {
 		initialize();
 	}
@@ -51,23 +53,28 @@ public class BuildingCondition extends JFrame {
 		JButton SeacrchButton = new JButton("검색");
 		SeacrchButton.setBounds(350, 10, 62, 29);
 		contentPane.add(SeacrchButton);
-		DefaultTableModel model = new DefaultTableModel(brokerHeader, 0) {
+		brokerModel = new DefaultTableModel(brokerHeader,0){
 			private static final long serialVersionUID = 1L;
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
 		;
-		brokerTable = new JTable(model);
+		brokerTable = new JTable(brokerModel);
 		brokerTable.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		brokerScroll = new JScrollPane(brokerTable);
 		brokerScroll.setBounds(12, 62, 400, 284);
 		brokerScroll.setPreferredSize(new Dimension(500, 90));
 		contentPane.add(brokerScroll);
 		
-		
-		model.setDataVector(null, buildingHeader);
-		buildingTable = new JTable(model);
+		buildingModel = new DefaultTableModel(buildingHeader,0) {
+			private static final long serialVersionUID = 1L;
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		;
+		buildingTable = new JTable(buildingModel);
 		BuildingScroll = new JScrollPane(buildingTable);
 		BuildingScroll.setBounds(454, 64, 400, 284);
 		contentPane.add(BuildingScroll);
