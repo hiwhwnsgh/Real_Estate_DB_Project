@@ -4,20 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.*;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.sql.SQLException;
 
 import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
 import DB_Package.*;
 import Entity.*;
 import java.util.*;
@@ -35,9 +30,11 @@ public class BuildingCondition extends JFrame {
 	private JTable buildingTable;
 	private DefaultTableModel brokerModel;
 	private DefaultTableModel buildingModel;
-	private DB_Execution dExecution;
+	private DB_Execution dExecution = new DB_Execution();
 	private JComboBox comboBox;
-	private Vector<Broker> vBroker = new Vector<>();
+	private Vector<Broker> brokerList = new Vector<>();
+	private Vector<Building> buildingList = new Vector<>();
+	private String sql;
 	public BuildingCondition() throws SQLException {
 		initialize();
 	}
@@ -71,6 +68,7 @@ public class BuildingCondition extends JFrame {
 		brokerScroll = new JScrollPane(brokerTable);
 		brokerScroll.setBounds(12, 62, 400, 284);
 		brokerScroll.setPreferredSize(new Dimension(500, 90));
+		brokerTable.addMouseListener(new BuildingSearch());
 		contentPane.add(brokerScroll);
 		
 		buildingModel = new DefaultTableModel(buildingHeader,0) {
@@ -89,25 +87,45 @@ public class BuildingCondition extends JFrame {
 	class RegionSearch implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			String Regionstr = comboBox.getSelectedItem().toString();
-			String sql;
 			if(Regionstr.equals("전체")) {
-				sql = "select 이름,전화번호,중개소위치 from 중개사";
+				sql = "select * from 중개사";
 			}
 			else {
-				sql = "select 이름,전화번호,중개소위치 from 중개사 where \"중개소위치\" like '"+Regionstr+"%'";
+				sql = "select * from 중개사 where \"중개소위치\" like '"+Regionstr+"%'";
 			}
-			dExecution = new DB_Execution();
 			try {
-				vBroker = dExecution.BrokerSearch(sql);
+				brokerList = dExecution.BrokerSearch(sql);
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 			brokerModel.setNumRows(0);
-			System.out.println(vBroker.size());
-			for(int i=0;i<vBroker.size();i++) {
-				Object obj[] = {vBroker.get(i).getName(),vBroker.get(i).getPhoneNumber(),vBroker.get(i).getAddress()};
+			for(int i=0;i<brokerList.size();i++) {
+				Object obj[] = {brokerList.get(i).getName(),brokerList.get(i).getPhoneNumber(),brokerList.get(i).getAddress()};
 				brokerModel.addRow(obj);
 			}
+		}
+	}
+	class BuildingSearch extends MouseAdapter{
+		public void mouseClicked(MouseEvent e) {
+			JTable buildingTable = (JTable)e.getSource();
+			String brokerId;
+			// 클릭한 행 및 컬럼 위치 확보
+			int clickedTableRow = buildingTable.getSelectedRow(); // 행
+			int clickedTableColumn = buildingTable.getSelectedColumn();// 필드
+			brokerId = brokerList.get(clickedTableRow).getId();
+			sql = "select * from 건물 where \"중개사ID\" = '"+ brokerId+"'";
+			try {
+				buildingList = dExecution.BuildingSearch(sql);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			buildingModel.setNumRows(0);
+			for(int i=0;i<buildingList.size();i++) {
+				Object obj[] = {buildingList.get(i).getShape(),buildingList.get(i).getAddress()};
+				buildingModel.addRow(obj);
+			}
+
+			
 		}
 	}
 }

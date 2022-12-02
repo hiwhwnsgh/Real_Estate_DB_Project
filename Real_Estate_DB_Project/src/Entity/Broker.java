@@ -6,10 +6,6 @@ public class Broker {
 	private int count;
 	private String Address;
 	private String PhoneNumber;
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
 	public void setBrokerId(String BrokerId) {
 		this.BrokerId = BrokerId;
 	}
@@ -33,5 +29,8 @@ public class Broker {
 	}
 	public String getAddress() {
 		return Address;
+	}
+	public String getId(){
+		return BrokerId;
 	}
 }
