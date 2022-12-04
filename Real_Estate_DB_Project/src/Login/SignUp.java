@@ -125,7 +125,7 @@ public class SignUp extends JFrame {
 					return;
 				}
 					
-				int Imoney = Integer.parseInt(capitalTextField.getText());
+				long Imoney = Integer.parseInt(capitalTextField.getText());
 				
 				if(comboBox.getSelectedItem().toString() == "만원") 
 					Imoney *= 10000;

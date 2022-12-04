@@ -7,7 +7,7 @@ public class DB_PrepareStatement {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	
-	public void sqlPreparementStatement(String ID, String PW, String city, int money, String terms) throws SQLException{
+	public void sqlPreparementStatement(String ID, String PW, String city, long money, String terms) throws SQLException{
 		String sql = "INSERT INTO 고객 VALUES (?,?,?,?,?)";
 		con = dbConnect.getConnection();
 		pstmt = con.prepareStatement(sql);
@@ -16,7 +16,7 @@ public class DB_PrepareStatement {
 			pstmt.setString(1, ID);
 			pstmt.setString(2, PW);
 			pstmt.setString(3, city);
-			pstmt.setInt(4, money);
+			pstmt.setLong(4, money);
 			pstmt.setString(5, terms);
 			
 			if (pstmt.executeUpdate() == 1) {
