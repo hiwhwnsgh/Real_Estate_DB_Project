@@ -1,19 +1,25 @@
 package Login;
 
-import java.awt.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JList;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.JButton;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import DB_Package.DB_PrepareStatement;
+
 
 public class SignUp extends JFrame {
-
+	DB_PrepareStatement DBpstmt = new DB_PrepareStatement();
 	private JPanel contentPane;
 	private JFrame frame;
 	private JLabel idLabel;
@@ -27,7 +33,7 @@ public class SignUp extends JFrame {
 	private JTextField capitalTextField;
 	private JLabel CheckPwLabel;
 	private JTextField checkPwTextField;
-	private JComboBox comboBox;
+	private JComboBox comboBox, regionComboBox, conditionComboBox;
 	private String[] PriceString = {"만원","억원"};
 	private String[] RegionString = {"서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원", "제주"};
 	public SignUp() {
@@ -71,7 +77,7 @@ public class SignUp extends JFrame {
 		conditionLabel.setBounds(45, 405, 50, 15);
 		frame.getContentPane().add(conditionLabel);
 		
-		JComboBox conditionComboBox = new JComboBox(ConditionString);
+		conditionComboBox = new JComboBox(ConditionString);
 		conditionComboBox.setBounds(45, 425, 250, 23);
 		frame.getContentPane().add(conditionComboBox);
 		
@@ -106,12 +112,48 @@ public class SignUp extends JFrame {
 		JButton SignUpButton = new JButton("가입하기");
 		SignUpButton.setBounds(45, 475, 250, 40);
 		frame.getContentPane().add(SignUpButton);
+		SignUpButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String IID = idTextField.getText();
+				String IPW = pwTextField.getText();
+				String IPW2 = checkPwTextField.getText();
+				if(!IPW.equals(IPW2)) {
+					JOptionPane.showMessageDialog(null, "비밀번호 불일치!", "경고", JOptionPane.WARNING_MESSAGE);
+					return;
+				}
+					
+				int Imoney = Integer.parseInt(capitalTextField.getText());
+				
+				if(comboBox.getSelectedItem().toString() == "만원") 
+					Imoney *= 10000;
+				else
+					Imoney *= 100000000;
+				
+				String Icity = regionComboBox.getSelectedItem().toString();
+				String Iterms = conditionComboBox.getSelectedItem().toString();
+				
+				try {
+					System.out.println("작동");
+					DBpstmt.sqlPreparementStatement(IID, IPW, Icity, Imoney, Iterms);
+					JOptionPane.showMessageDialog(null, "회원가입 성공", "알림", JOptionPane.INFORMATION_MESSAGE);
+					frame.setVisible(false);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					new NewTest("실패");
+				}
+				
+			}
+		});
 		
 		comboBox = new JComboBox(PriceString);
 		comboBox.setBounds(307, 304, 91, 23);
 		frame.getContentPane().add(comboBox);
 		
-		JComboBox regionComboBox = new JComboBox(RegionString);
+		regionComboBox = new JComboBox(RegionString);
 		regionComboBox.setBounds(45, 370, 250, 23);
 		frame.getContentPane().add(regionComboBox);
 	}
