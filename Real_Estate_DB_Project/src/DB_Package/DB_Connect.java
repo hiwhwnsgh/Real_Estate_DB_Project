@@ -2,7 +2,7 @@ package DB_Package;
 
 import java.sql.*;
 
-class DB_Connect {
+public class DB_Connect {
 	Connection con = null;
 	String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	String id = "realEstate";
@@ -13,7 +13,7 @@ class DB_Connect {
 	public DB_Connect() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn= DriverManager.getConnection(url, id, password);
+			conn = DriverManager.getConnection(url, id, password);
 			System.out.println("DB 연결 완료");
 			stmt = conn.createStatement();
 		} catch (ClassNotFoundException e) {
@@ -37,6 +37,7 @@ class DB_Connect {
 
 		return src;
 	}
+
 	public Connection getConnection() {
 		// PreparedStatement이용해 SQL 작성할 경우 Connection 객체가 필요해 만든 메소드
 		if (conn != null) {
