@@ -33,8 +33,6 @@ public class BuildingSearch extends JFrame {
 	private String[] PriceString = {"만원","억원"};
 	private String[] buildingHeader = {"이름","주소","조건","가격"};
 	private String[] RegionString = {"전체","서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원", "제주"};
-	private Vector<Building> buildingList = new Vector<>();
-	private DB_PrepareStatement DBpstmt = new DB_PrepareStatement();
 	private JTable table;
 	private DB_PrepareStatement DBpstmt = new DB_PrepareStatement();
 	private Vector<Building> buildingList = new Vector<>();
@@ -168,7 +166,5 @@ public class BuildingSearch extends JFrame {
 		});
 		cancelButton.setBounds(321, 500, 97, 23);
 		contentPane.add(cancelButton);
-		
-		
 	}
 }
