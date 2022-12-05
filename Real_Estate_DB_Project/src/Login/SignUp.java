@@ -139,11 +139,10 @@ public class SignUp extends JFrame {
 					System.out.println("작동");
 					DBpstmt.sqlPreparementStatement(IID, IPW, Icity, Imoney, Iterms);
 					JOptionPane.showMessageDialog(null, "회원가입 성공", "알림", JOptionPane.INFORMATION_MESSAGE);
-					frame.setVisible(false);
+					frame.dispose();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					new NewTest("실패");
 				}
 				
 			}

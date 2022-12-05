@@ -41,7 +41,7 @@ public class BuildingCondition extends JFrame {
 
 	private void initialize() throws SQLException {
 		frame = new JFrame("메인화면");
-		frame.setBounds(100, 100, 880, 395);
+		frame.setBounds(100, 100, 880, 400);
 		frame.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -41,4 +41,7 @@ public class Building {
 	public String getAddress() {
 		return Address;
 	}
+	public int getSellPrice() {
+		return SellPrice;
+	}
 }
