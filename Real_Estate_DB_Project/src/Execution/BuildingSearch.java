@@ -7,6 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import DB_Package.DB_PrepareStatement;
+import Entity.Building;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
@@ -16,6 +20,8 @@ import javax.swing.JTable;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 
 public class BuildingSearch extends JFrame {
@@ -27,6 +33,8 @@ public class BuildingSearch extends JFrame {
 	private String[] PriceString = {"만원","억원"};
 	private String[] buildingHeader = {"이름","주소","조건","가격"};
 	private String[] RegionString = {"전체","서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원", "제주"};
+	private Vector<Building> buildingList = new Vector<>();
+	private DB_PrepareStatement DBpstmt = new DB_PrepareStatement();
 	private JTable table;
 	public BuildingSearch() {
 		initialize();
@@ -96,6 +104,32 @@ public class BuildingSearch extends JFrame {
 		
 		JButton SearchButton = new JButton("조회");
 		SearchButton.setBounds(18, 178, 167, 23);
+		SearchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String area=cityComboBox.getSelectedItem().toString();
+				String condition=conditionComboBox.getSelectedItem().toString();
+				int price = Integer.parseInt(textField.getText());
+				if(PriceComboBox.getSelectedItem().toString()=="만원")
+					price*=10000;
+				else
+					price*=100000000;
+				String order;
+				if(DownRadioButton.isSelected())
+					order="DECS";
+				else
+					order="ASC";
+				try {
+					buildingList=DBpstmt.BulidingSearch(area,condition,price,order);
+					model.setNumRows(0);
+					for(int i=0;i<buildingList.size();i++) {
+						System.out.print(1);
+						Object obj[] = {buildingList.get(i).getSeller().getSellerId(),buildingList.get(i).getAddress(),buildingList.get(i).getSellPrice(),buildingList.get(i).getSeller().getCondition()};
+						model.addRow(obj);
+					}
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}});
 		contentPane.add(SearchButton);
 		
 		JButton cancelButton = new JButton("닫기");
