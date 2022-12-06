@@ -115,15 +115,14 @@ public class BuildingSearch extends JFrame {
 					price*=100000000;
 				String order;
 				if(DownRadioButton.isSelected())
-					order="DECS";
-				else
 					order="ASC";
+				else
+					order="DESC";
 				try {
 					buildingList=DBpstmt.BulidingSearch(area,condition,price,order);
 					model.setNumRows(0);
 					for(int i=0;i<buildingList.size();i++) {
-						System.out.print(1);
-						Object obj[] = {buildingList.get(i).getSeller().getSellerId(),buildingList.get(i).getAddress(),buildingList.get(i).getSellPrice(),buildingList.get(i).getSeller().getCondition()};
+						Object obj[] = {buildingList.get(i).getSeller().getSellerId(),buildingList.get(i).getAddress(),buildingList.get(i).getSeller().getCondition(),buildingList.get(i).getSellPrice()};
 						model.addRow(obj);
 					}
 				} catch (SQLException e1) {
@@ -131,32 +130,6 @@ public class BuildingSearch extends JFrame {
 				}
 			}});
 		contentPane.add(SearchButton);
-		SearchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String area=cityComboBox.getSelectedItem().toString();
-				String condition=conditionComboBox.getSelectedItem().toString();
-				int price = Integer.parseInt(textField.getText());
-				if(PriceComboBox.getSelectedItem().toString()=="만원")
-					price*=10000;
-				else
-					price*=100000000;
-				String order;
-				if(DownRadioButton.isSelected())
-					order="DECS";
-				else
-					order="ASC";
-				try {
-					buildingList=DBpstmt.BulidingSearch(area,condition,price,order);
-					
-					for(int i=0;i<buildingList.size();i++) {
-						System.out.print(1);
-						Object obj[] = {buildingList.get(i).getSeller().getSellerId(),buildingList.get(i).getAddress(),buildingList.get(i).getSellPrice(),buildingList.get(i).getSeller().getCondition()};
-						model.addRow(obj);
-					}
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			}});
 		
 		JButton cancelButton = new JButton("닫기");
 		cancelButton.addActionListener(new ActionListener() {
