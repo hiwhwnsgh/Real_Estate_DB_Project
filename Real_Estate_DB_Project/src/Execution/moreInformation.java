@@ -11,6 +11,9 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
+import javax.swing.JButton;
+import java.awt.SystemColor;
+import java.awt.Color;
 
 public class moreInformation extends JFrame {
 
@@ -21,7 +24,11 @@ public class moreInformation extends JFrame {
 	private JTextField completionTextField;
 	private JTextField ShapeTextField;
 	private JTextField PriceTextField;
-	public moreInformation() {
+	private JTextField CompanyTextField;
+	private JLabel ConditionLabel;
+	private JTextField ConditionTextField;
+	public moreInformation(String buildingId) {
+		System.out.println(buildingId);
 		frame = new JFrame("상세정보");
 		frame.setBounds(100, 100, 450, 550);
 		contentPane = new JPanel();
@@ -67,7 +74,7 @@ public class moreInformation extends JFrame {
 		ShapeTextField.setBounds(112, 150, 274, 21);
 		contentPane.add(ShapeTextField);
 		
-		JLabel PriceLabel = new JLabel("건물 형태");
+		JLabel PriceLabel = new JLabel("판매 금액");
 		PriceLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		PriceLabel.setBounds(47, 190, 53, 21);
 		contentPane.add(PriceLabel);
@@ -77,6 +84,35 @@ public class moreInformation extends JFrame {
 		PriceTextField.setColumns(10);
 		PriceTextField.setBounds(112, 190, 274, 21);
 		contentPane.add(PriceTextField);
+		
+		JLabel CompanyLabel = new JLabel("건설사");
+		CompanyLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		CompanyLabel.setBounds(47, 230, 53, 21);
+		contentPane.add(CompanyLabel);
+		
+		CompanyTextField = new JTextField();
+		CompanyTextField.setEnabled(false);
+		CompanyTextField.setColumns(10);
+		CompanyTextField.setBounds(112, 230, 274, 21);
+		contentPane.add(CompanyTextField);
+		
+		ConditionLabel = new JLabel("계약 조건");
+		ConditionLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		ConditionLabel.setBounds(47, 270, 53, 21);
+		contentPane.add(ConditionLabel);
+		
+		ConditionTextField = new JTextField();
+		ConditionTextField.setEnabled(false);
+		ConditionTextField.setColumns(10);
+		ConditionTextField.setBounds(112, 270, 274, 21);
+		contentPane.add(ConditionTextField);
+		
+		JButton contractButton = new JButton("건물 계약");
+		contractButton.setBorderPainted(false);
+		contractButton.setBackground(new Color(255, 228, 196));
+		contractButton.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		contractButton.setBounds(47, 335, 339, 45);
+		contentPane.add(contractButton);
 		frame.setVisible(true);
 	}
 }

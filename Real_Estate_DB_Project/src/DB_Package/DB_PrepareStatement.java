@@ -68,4 +68,5 @@ public class DB_PrepareStatement {
 		}
 		return VBuilding;
 	}
+	public Vector BuildingInfoSearch()
 }
