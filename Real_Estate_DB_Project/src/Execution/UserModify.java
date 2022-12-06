@@ -21,9 +21,11 @@ public class UserModify {
 	private JLabel CheckPwLabel;
 	private JTextField checkPwTextField;
 	private JComboBox comboBox;
+	private String userId;
 	private String[] PriceString = {"만원","억원"};
 	private String[] RegionString = {"서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원", "제주"};
-	public UserModify() {
+	public UserModify(String userId) {
+		this.userId = userId;
 		initialize();
 	}
 	
