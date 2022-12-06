@@ -7,6 +7,7 @@ public class Building {
 	private int CompletionTime;
 	private String Shape;
 	private int SellPrice;
+	private String condition;
 	private String Company;
 	private String BrokerId;
 	private String SellerId;
@@ -31,6 +32,12 @@ public class Building {
 	}
 	public void setCompany(String Company) {
 		this.Company = Company;
+	}
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+	public String getCondition() {
+		return condition;
 	}
 	public Seller getSeller() {
 		return seller;

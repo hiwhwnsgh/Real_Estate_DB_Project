@@ -119,7 +119,7 @@ public class BuildingCondition extends JFrame {
 			// 클릭한 행 및 컬럼 위치 확보
 			int clickedTableRow = buildingTable.getSelectedRow(); // 행
 			brokerId = brokerList.get(clickedTableRow).getId();
-			sql = "select 건물.건물형태,건물.주소,임대인.계약조건 from 임대인,건물 where 건물.\"판매자ID\" = 임대인.\"판매자ID\" and 건물.\"중개사ID\" = '"
+			sql = "select 건물.건물형태,건물.주소,건물.계약조건 from 건물 where 건물.\"중개사ID\" = '"
 					+ brokerId + "'";
 			try {
 				buildingList = dExecution.BuildingSearch(sql);
@@ -129,7 +129,7 @@ public class BuildingCondition extends JFrame {
 			buildingModel.setNumRows(0);
 			for (int i = 0; i < buildingList.size(); i++) {
 				Object obj[] = { buildingList.get(i).getShape(), buildingList.get(i).getAddress(),
-						buildingList.get(i).getSeller().getCondition() };
+						buildingList.get(i).getCondition()};
 				buildingModel.addRow(obj);
 			}
 		}

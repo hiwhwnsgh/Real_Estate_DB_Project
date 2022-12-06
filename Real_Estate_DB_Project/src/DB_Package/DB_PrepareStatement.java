@@ -39,6 +39,7 @@ public class DB_PrepareStatement {
 			}	
 		}
 	}
+	
 	public Vector BulidingSearch(String city, String condition, long money, String order) throws SQLException{
 		Vector<Building> VBuilding = new Vector<>();
 		String sql = "select 임대인.판매자ID,건물.주소,임대인.계약조건,건물.판매금액"
@@ -61,12 +62,15 @@ public class DB_PrepareStatement {
 			building = new Building();
 			building.getSeller().setSellerId(rs.getString(i++));
 			building.setAddress(rs.getString(i++));
-			building.getSeller().setCondition(rs.getString(i++));
+			building.setCondition(rs.getString(i++));
 			building.setSellPrice(rs.getInt(i++));
 			i = 1;
 			VBuilding.add(building);
 		}
 		return VBuilding;
 	}
-	public Vector BuildingInfoSearch()
+	public Vector BuildingInfoSearch() {
+		Vector<Building> VBuliding = new Vector<>();
+		return VBuliding;
+	}
 }

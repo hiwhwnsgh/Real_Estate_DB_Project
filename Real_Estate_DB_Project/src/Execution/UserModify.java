@@ -27,9 +27,6 @@ public class UserModify {
 		initialize();
 	}
 	
-	/**
-	 * @wbp.parser.entryPoint
-	 */
 	private void initialize() {
 		frame = new JFrame("회원정보 수정");
 		frame.setBounds(100, 100, 439, 577);
