@@ -122,7 +122,7 @@ public class BuildingSearch extends JFrame {
 					buildingList=DBpstmt.BulidingSearch(area,condition,price,order);
 					model.setNumRows(0);
 					for(int i=0;i<buildingList.size();i++) {
-						Object obj[] = {buildingList.get(i).getSeller().getSellerId(),buildingList.get(i).getAddress(),buildingList.get(i).getSeller().getCondition(),buildingList.get(i).getSellPrice()};
+						Object obj[] = {buildingList.get(i).getSeller().getSellerId(),buildingList.get(i).getAddress(),buildingList.get(i).getCondition(),buildingList.get(i).getSellPrice()};
 						model.addRow(obj);
 					}
 				} catch (SQLException e1) {

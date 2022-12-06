@@ -6,7 +6,6 @@ public class Seller {
 	private String sellerId;
 	private String Address;
 	private Date date;
-
 	private String brokerId;
 	
 	public void setBrokerId(String brokerId) {
