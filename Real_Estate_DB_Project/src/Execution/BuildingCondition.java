@@ -36,8 +36,11 @@ public class BuildingCondition extends JFrame {
 	private Vector<Broker> brokerList = new Vector<>();
 	private Vector<Building> buildingList = new Vector<>();
 	private String sql;
+	private String userId;
+	private String brokerId;
 
-	public BuildingCondition() throws SQLException {
+	public BuildingCondition(String userId) throws SQLException {
+		this.userId = userId;
 		initialize();
 	}
 
@@ -115,7 +118,7 @@ public class BuildingCondition extends JFrame {
 	class BuildingSearch extends MouseAdapter {
 		public void mouseClicked(MouseEvent e) {
 			JTable buildingTable = (JTable) e.getSource();
-			String brokerId;
+
 			// 클릭한 행 및 컬럼 위치 확보
 			int clickedTableRow = buildingTable.getSelectedRow(); // 행
 			brokerId = brokerList.get(clickedTableRow).getId();
@@ -141,7 +144,12 @@ public class BuildingCondition extends JFrame {
 				JTable buildingInfoTable = (JTable) e.getSource();
 				int Row = buildingInfoTable.getSelectedRow(); // 행
 				String addressSelected = buildingInfoTable.getModel().getValueAt(Row, 1).toString();
-				new moreInformation(addressSelected);
+				try {
+					new moreInformation(addressSelected,brokerId,userId);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 	}

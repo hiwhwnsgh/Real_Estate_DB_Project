@@ -36,7 +36,7 @@ public class BuildingSearch extends JFrame {
 	private JTable table;
 	private DB_PrepareStatement DBpstmt = new DB_PrepareStatement();
 	private Vector<Building> buildingList = new Vector<>();
-	public BuildingSearch() {
+	public BuildingSearch(String userId) {
 		initialize();
 	}
 	private void initialize() {

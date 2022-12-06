@@ -80,11 +80,28 @@ public class DB_PrepareStatement {
 			building.getSeller().setSellerId(rs.getString(i++));
 			building.setAddress(rs.getString(i++));
 			building.setCondition(rs.getString(i++));
-			building.setSellPrice(rs.getInt(i++));
+			building.setSellPrice(rs.getLong(i++));
 			i = 1;
 			VBuilding.add(building);
 		}
 		return VBuilding;
+	}
+	public Building BuildingInfoSearch(String buildingAddress) throws SQLException {
+		Building building = new Building();
+		String sql = "select 주소,완공시기,건물형태,시세,건설사,계약조건 from 건물 where 주소 = ?";
+		con = dbConnect.getConnection();
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, buildingAddress);
+		rs=pstmt.executeQuery();
+		while(rs.next()) {
+			building.setAddress(rs.getString(1));
+			building.setCompletionTime(rs.getInt(2));
+			building.setShape(rs.getString(3));
+			building.setSellPrice(rs.getLong(4));
+			building.setCompany(rs.getString(5));
+			building.setCondition(rs.getString(6));
+		}
+		return building;
 	}
 
 }

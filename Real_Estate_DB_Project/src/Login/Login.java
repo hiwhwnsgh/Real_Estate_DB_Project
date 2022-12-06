@@ -53,7 +53,7 @@ public class Login extends JFrame {
 		JButton btnLogin = new JButton("로그인");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new main();
+				new main(ID_textField.getText());
 			}
 		});
 		btnLogin.setBounds(237, 114, 85, 62);

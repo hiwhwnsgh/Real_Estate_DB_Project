@@ -27,11 +27,12 @@ public class main extends JFrame {
 	ImageIcon userimg2 = new ImageIcon("images/user2.png");
 	ImageIcon userimg3 = new ImageIcon("images/user3.png");
 	private JButton userButton;
-	
+	private String userId;
 
 	
 	
-	public main() {
+	public main(String userId) {
+		this.userId = userId;
 		initialize();
 	}
 	
@@ -41,8 +42,8 @@ public class main extends JFrame {
 		frame.setVisible(true);
 		
 		contentPane = new MainPanel();
-		contentPane.mJPanel = new mainJPanel(contentPane);
-		contentPane.uJPanel = new userPanel(contentPane);
+		contentPane.mJPanel = new mainJPanel(contentPane,userId);
+		contentPane.uJPanel = new userPanel(contentPane,userId);
 		
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

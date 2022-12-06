@@ -6,7 +6,7 @@ public class Building {
 	private String Address;
 	private int CompletionTime;
 	private String Shape;
-	private int SellPrice;
+	private Long SellPrice;
 	private String condition;
 	private String Company;
 	private String BrokerId;
@@ -21,7 +21,7 @@ public class Building {
 	public void setCompletionTime(int CompletionTime) {
 		this.CompletionTime = CompletionTime;
 	}
-	public void setSellPrice(int SellPrice) {
+	public void setSellPrice(Long SellPrice) {
 		this.SellPrice = SellPrice;
 	}
 	public void setBrokerId(String BrokerId) {
@@ -48,7 +48,13 @@ public class Building {
 	public String getAddress() {
 		return Address;
 	}
-	public int getSellPrice() {
+	public Long getSellPrice() {
 		return SellPrice;
+	}
+	public int getCompletionTime() {
+		return CompletionTime;
+	}
+	public String getCompany() {
+		return Company;
 	}
 }

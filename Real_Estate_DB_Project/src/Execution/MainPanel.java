@@ -22,8 +22,9 @@ class mainJPanel extends JPanel {
 	private JButton UserEditButton;
 	private MainPanel frame;
 
-	public mainJPanel(MainPanel frame) {
+	public mainJPanel(MainPanel framem,String userId) {
 		this.frame = frame;
+
 		setLayout(null);
 		ConditionButton = new JButton("건물 계약");
 		ConditionButton.setForeground(Color.BLACK);
@@ -32,7 +33,7 @@ class mainJPanel extends JPanel {
 		ConditionButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					new BuildingCondition();
+					new BuildingCondition(userId);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -47,7 +48,7 @@ class mainJPanel extends JPanel {
 		add(SearchBuilding);
 		SearchBuilding.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new BuildingSearch();
+				new BuildingSearch(userId);
 			}			
 		});
 	}
@@ -57,7 +58,7 @@ class mainJPanel extends JPanel {
 class userPanel extends JPanel {
 	private JButton UserEditButton;
 	private MainPanel frame;
-	public userPanel(MainPanel frame) {
+	public userPanel(MainPanel frame,String userId) {
 		this.frame = frame;
 		UserEditButton = new JButton("회원 정보 수정");
 		UserEditButton.setFont(new Font("맑은 고딕", Font.BOLD, 22));
@@ -68,7 +69,7 @@ class userPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new UserModify();
+				new UserModify(userId);
 			}
 		});
 	}
