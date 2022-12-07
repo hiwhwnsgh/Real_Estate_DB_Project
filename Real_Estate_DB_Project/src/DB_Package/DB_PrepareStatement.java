@@ -45,18 +45,18 @@ public class DB_PrepareStatement {
 		Vector<Building> VBuilding = new Vector<>();
 		String sql; //sql고칠필요있음
 		if(city=="전체") {
-			sql = "select 임대인.판매자ID,건물.주소,임대인.계약조건,건물.판매금액"
+			sql = "select 임대인.판매자ID,건물.주소,건물.계약조건,건물.시세"
 					+ " from 건물,임대인 where 임대인.판매자ID=건물.판매자ID"
-					+ " and 임대인.계약조건 = "+"'"+condition+"'"
-					+ " and 건물.판매금액 <= ?"
-					+ " order by 건물.판매금액 "+order;
+					+ " and 건물.계약조건 = "+"'"+condition+"'"
+					+ " and 건물.시세 <= ?"
+					+ " order by 건물.시세 "+order;
 		}else {
-			sql = "select 임대인.판매자ID,건물.주소,임대인.계약조건,건물.판매금액"
+			sql = "select 임대인.판매자ID,건물.주소,건물.계약조건,건물.시세"
 					+ " from 건물,임대인 where 임대인.판매자ID=건물.판매자ID"
 					+ " and 건물.주소 like ?"
-					+ " and 임대인.계약조건 = "+"'"+condition+"'"
-					+ " and 건물.판매금액 <= ?"
-					+ " order by 건물.판매금액 "+order;
+					+ " and 건물.계약조건 = "+"'"+condition+"'"
+					+ " and 건물.시세 <= ?"
+					+ " order by 건물.시세 "+order;
 		}
 		con = dbConnect.getConnection();
 		pstmt = con.prepareStatement(sql);
