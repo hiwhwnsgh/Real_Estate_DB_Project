@@ -104,4 +104,16 @@ public class DB_PrepareStatement {
 		return building;
 	}
 
+	public Boolean IsIDPWTrue(String ID,String PW)throws SQLException {
+		String sql="select 고객ID, 비밀번호 from 고객 where 고객ID=? and 비밀번호=?";
+		con=dbConnect.getConnection();
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, ID);
+		pstmt.setString(2, PW);
+		rs=pstmt.executeQuery();
+		if(rs.isBeforeFirst())
+			return true;
+		else
+			return false;
+	}
 }

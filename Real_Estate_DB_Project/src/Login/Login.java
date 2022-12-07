@@ -5,14 +5,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import DB_Package.DB_PrepareStatement;
 import Execution.*;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,6 +28,7 @@ public class Login extends JFrame {
 	private JTextField ID_textField;
 	private JTextField PW_textField;
 	private JButton btnSignUp;
+	private DB_PrepareStatement DBpstmt=new DB_PrepareStatement();
 	ImageIcon img = new ImageIcon("images/SignUpImage.png");
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +58,18 @@ public class Login extends JFrame {
 		JButton btnLogin = new JButton("로그인");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new main(ID_textField.getText());
+				String ID=ID_textField.getText();
+				String PW=PW_textField.getText();
+				try {
+					if(DBpstmt.IsIDPWTrue(ID,PW))
+						new main(ID_textField.getText());
+					else
+						JOptionPane.showMessageDialog(null, "아이디나 비밀번호를 다시 확인해 주세요.", "로그인 실패", JOptionPane.INFORMATION_MESSAGE);
+				} catch (HeadlessException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnLogin.setBounds(237, 114, 85, 62);
