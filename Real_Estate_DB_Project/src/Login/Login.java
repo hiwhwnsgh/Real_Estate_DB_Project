@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
@@ -27,6 +29,8 @@ public class Login extends JFrame {
 	private JTextField textField;
 	private JTextField ID_textField;
 	private JTextField PW_textField;
+	private String inputPW = "";
+	private String star="";
 	private JButton btnSignUp;
 	private DB_PrepareStatement DBpstmt=new DB_PrepareStatement();
 	ImageIcon img = new ImageIcon("images/SignUpImage.png");
@@ -51,6 +55,26 @@ public class Login extends JFrame {
 		
 		
 		PW_textField = new HintTextField("PassWord");
+		PW_textField.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				star="";
+				if(e.getKeyCode()==8) {//백스페이스(지우기)키 눌렀을때
+					try {
+						inputPW=inputPW.substring(0,inputPW.length()-1);
+					}catch(StringIndexOutOfBoundsException se) {
+						//빈칸인경우(지울 문자열 없음)
+						inputPW="";
+					}
+				}		
+				else //문자 아무꺼나 입력됐을 경우
+					inputPW+=e.getKeyChar();
+				
+				//문자열의 길이만큼의 *을 화면에 출력
+				for(int i=0; i<inputPW.length(); i++)
+					star+="*";
+				PW_textField.setText(star);
+			}
+		});
 		PW_textField.setBounds(50, 149, 175, 27);
 		contentPane.add(PW_textField);
 		PW_textField.setColumns(10);
@@ -59,7 +83,7 @@ public class Login extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String ID=ID_textField.getText();
-				String PW=PW_textField.getText();
+				String PW=inputPW;
 				try {
 					if(DBpstmt.IsIDPWTrue(ID,PW))
 						new main(ID_textField.getText());
