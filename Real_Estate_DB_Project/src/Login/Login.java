@@ -85,8 +85,10 @@ public class Login extends JFrame {
 				String ID=ID_textField.getText();
 				String PW=inputPW;
 				try {
-					if(DBpstmt.IsIDPWTrue(ID,PW))
+					if(DBpstmt.IsIDPWTrue(ID,PW)) {
 						new main(ID_textField.getText());
+						dispose();
+					}
 					else
 						JOptionPane.showMessageDialog(null, "아이디나 비밀번호를 다시 확인해 주세요.", "로그인 실패", JOptionPane.INFORMATION_MESSAGE);
 				} catch (HeadlessException e1) {

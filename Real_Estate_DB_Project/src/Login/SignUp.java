@@ -15,11 +15,13 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import DB_Package.DB_CallableStatement;
 import DB_Package.DB_PrepareStatement;
 
 
 public class SignUp extends JFrame {
 	DB_PrepareStatement DBpstmt = new DB_PrepareStatement();
+	DB_CallableStatement DBcstmt = new DB_CallableStatement();
 	private JPanel contentPane;
 	private JFrame frame;
 	private JLabel idLabel;
@@ -36,6 +38,7 @@ public class SignUp extends JFrame {
 	private JComboBox comboBox, regionComboBox, conditionComboBox;
 	private String[] PriceString = {"만원","억원"};
 	private String[] RegionString = {"서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원", "제주"};
+	protected String ID1;
 	public SignUp() {
 		initialize();
 	}
@@ -108,6 +111,25 @@ public class SignUp extends JFrame {
 		JButton IdCheckButton = new JButton("중복 확인");
 		IdCheckButton.setBounds(307, 124, 91, 23);
 		frame.getContentPane().add(IdCheckButton);
+		IdCheckButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ID1 = idTextField.getText();
+				try {
+					if(DBcstmt.sqlCallableStatement(ID1) == true)
+						JOptionPane.showMessageDialog(null, "사용가능한 아이디입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
+					
+					else
+						JOptionPane.showMessageDialog(null, "중복된 아이디 입니다.", "경고", JOptionPane.WARNING_MESSAGE);
+					
+				} catch (SQLException e1) {
+					// TODO: handle exception
+					e1.printStackTrace();
+				}
+			}
+		});
 		
 		JButton SignUpButton = new JButton("가입하기");
 		SignUpButton.setBounds(45, 475, 250, 40);
@@ -135,11 +157,16 @@ public class SignUp extends JFrame {
 				String Icity = regionComboBox.getSelectedItem().toString();
 				String Iterms = conditionComboBox.getSelectedItem().toString();
 				
+						
 				try {
+					if(DBcstmt.sqlCallableStatement(ID1) == true) {	
 					System.out.println("작동");
 					DBpstmt.sqlPreparementStatement(IID, IPW, Icity, Imoney, Iterms);
 					JOptionPane.showMessageDialog(null, "회원가입 성공", "알림", JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();
+					}
+					else
+						JOptionPane.showMessageDialog(null, "중복된 아이디 입니다.", "경고", JOptionPane.WARNING_MESSAGE);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
