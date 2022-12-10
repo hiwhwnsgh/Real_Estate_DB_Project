@@ -1,7 +1,7 @@
 package Entity;
 
 public class User {
-	private String uid;
+	public String uid;
 	private String password;
 	private String hopeCity;
 	private int Price;
@@ -21,4 +21,8 @@ public class User {
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
+	public String getUid() {
+		return uid;
+	}
+
 }

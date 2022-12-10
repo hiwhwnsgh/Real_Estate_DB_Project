@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Entity.Building;
+import Entity.*;
+import DB_Package.DB_CallableStatement;
 import DB_Package.DB_PrepareStatement;
 import DB_Package.DB_Statement;
 
@@ -19,6 +20,8 @@ import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -37,6 +40,7 @@ public class moreInformation extends JFrame {
 	private JLabel ConditionLabel;
 	private JTextField ConditionTextField;
 	private DB_PrepareStatement preExecution = new DB_PrepareStatement();
+	DB_CallableStatement DBcstmt = new DB_CallableStatement();
 	private String address;
 	private String brokerId;
 	private String userId;
@@ -60,6 +64,7 @@ public class moreInformation extends JFrame {
 		contentPane.add(TitleLabel);
 
 		AddressLabel = new JLabel("주소");
+		AddressLabel.setFont(new Font("굴림", Font.PLAIN, 13));
 		AddressLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		AddressLabel.setBounds(47, 70, 53, 21);
 		contentPane.add(AddressLabel);
@@ -71,6 +76,7 @@ public class moreInformation extends JFrame {
 		AddressTextField.setColumns(10);
 
 		JLabel completionLabel = new JLabel("완공시기");
+		completionLabel.setFont(new Font("굴림", Font.PLAIN, 13));
 		completionLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		completionLabel.setBounds(47, 110, 53, 21);
 		contentPane.add(completionLabel);
@@ -82,8 +88,9 @@ public class moreInformation extends JFrame {
 		contentPane.add(completionTextField);
 
 		JLabel ShapeLabel = new JLabel("건물 형태");
+		ShapeLabel.setFont(new Font("굴림", Font.PLAIN, 13));
 		ShapeLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		ShapeLabel.setBounds(47, 150, 53, 21);
+		ShapeLabel.setBounds(47, 150, 65, 21);
 		contentPane.add(ShapeLabel);
 
 		ShapeTextField = new JTextField();
@@ -93,6 +100,7 @@ public class moreInformation extends JFrame {
 		contentPane.add(ShapeTextField);
 
 		JLabel PriceLabel = new JLabel("시세");
+		PriceLabel.setFont(new Font("굴림", Font.PLAIN, 13));
 		PriceLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		PriceLabel.setBounds(47, 190, 53, 21);
 		contentPane.add(PriceLabel);
@@ -104,6 +112,7 @@ public class moreInformation extends JFrame {
 		contentPane.add(PriceTextField);
 
 		JLabel CompanyLabel = new JLabel("건설사");
+		CompanyLabel.setFont(new Font("굴림", Font.PLAIN, 13));
 		CompanyLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		CompanyLabel.setBounds(47, 230, 53, 21);
 		contentPane.add(CompanyLabel);
@@ -115,8 +124,9 @@ public class moreInformation extends JFrame {
 		contentPane.add(CompanyTextField);
 
 		ConditionLabel = new JLabel("계약 조건");
+		ConditionLabel.setFont(new Font("굴림", Font.PLAIN, 13));
 		ConditionLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		ConditionLabel.setBounds(47, 270, 53, 21);
+		ConditionLabel.setBounds(47, 270, 65, 21);
 		contentPane.add(ConditionLabel);
 
 		ConditionTextField = new JTextField();
@@ -131,6 +141,28 @@ public class moreInformation extends JFrame {
 		contractButton.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		contractButton.setBounds(47, 335, 339, 45);
 		contentPane.add(contractButton);
+		contractButton.addActionListener(new ActionListener() {		// 건물계약 이벤트
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+
+				try {
+					System.out.println("계약");
+					System.out.println(building.getBuildingNum());
+					System.out.println(userId);
+					DBcstmt.ContractBuilding(userId, building.getBuildingNum());	//DB_CallableStatement 파일에 있는 건물계약 함수호출
+					frame.dispose();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					
+			}
+		});
+		
+		
+		
 		AddInfoText();
 		frame.setVisible(true);
 	}

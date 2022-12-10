@@ -122,8 +122,8 @@ public class BuildingCondition extends JFrame {
 			// 클릭한 행 및 컬럼 위치 확보
 			int clickedTableRow = buildingTable.getSelectedRow(); // 행
 			brokerId = brokerList.get(clickedTableRow).getId();
-			sql = "select 건물.건물형태,건물.주소,건물.계약조건 from 건물 where 건물.\"중개사ID\" = '"
-					+ brokerId + "'";
+			sql = "select 건물.건물형태,건물.주소,건물.계약조건 from 건물 where 계약여부 = 0 AND 건물.\"중개사ID\" = '"	// 계약여부가 0인 건물들만 출력
+					+ brokerId + "'" ;
 			try {
 				buildingList = dExecution.BuildingSearch(sql);
 			} catch (SQLException e1) {
