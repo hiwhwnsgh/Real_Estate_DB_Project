@@ -108,11 +108,17 @@ public class BuildingSearch extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String area=cityComboBox.getSelectedItem().toString();
 				String condition=conditionComboBox.getSelectedItem().toString();
-				int price = Integer.parseInt(textField.getText());
-				if(PriceComboBox.getSelectedItem().toString()=="만원")
-					price*=10000;
-				else
-					price*=100000000;
+				long price;
+				try {
+					price = Integer.parseInt(textField.getText());
+					if(PriceComboBox.getSelectedItem().toString()=="만원")
+						price*=10000;
+					else
+						price*=100000000;
+				}catch(NumberFormatException ne1) {
+					price=0;
+				}
+				
 				String order;
 				if(DownRadioButton.isSelected())
 					order="ASC";
