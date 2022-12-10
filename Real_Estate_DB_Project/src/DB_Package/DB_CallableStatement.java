@@ -53,7 +53,10 @@ public class DB_CallableStatement {
 			cstmt.executeQuery();
 			con.commit();		// 커밋
 			System.out.println("계약성공!");
+			JOptionPane.showMessageDialog(null, "계약 완료!", "알림", JOptionPane.INFORMATION_MESSAGE);
 		} catch(SQLException e) {
+			JOptionPane.showMessageDialog(null, "자본금이 부족합니다.", "계약실패", JOptionPane.WARNING_MESSAGE);
+			System.out.println("계약실패");
 			e.printStackTrace();
 		}
 	}
