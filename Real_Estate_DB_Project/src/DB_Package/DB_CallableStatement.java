@@ -42,17 +42,35 @@ public class DB_CallableStatement {
 		return false;
 	}
 	
-	public void ContractBuilding(String ID1, int B_Num) throws SQLException{	//건물계약 메소드
+	public void ContractBuilding(String Broker, String ID1, int B_Num) throws SQLException{	//건물계약 메소드
 		con = dbConnect.getConnection();
-		cstmt = con.prepareCall("{call BUY_BUILDING(?, ?)}");
+		con.setAutoCommit(false);	// 트랜잭션 오토커밋 끄기
+		cstmt = con.prepareCall("{call BUY_BUILDING(?, ?, ?)}");
 		try {
-			cstmt.setString(1, ID1);	//고객아이디
-			cstmt.setInt(2, B_Num);		//건물일련번호
+			cstmt.setString(1, Broker);		//중개사아이디
+			cstmt.setString(2, ID1);	//고객아이디
+			cstmt.setInt(3, B_Num);		//건물일련번호
 			cstmt.executeQuery();
+			con.commit();		// 커밋
 			System.out.println("계약성공!");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	public void SqlModifyBuilding(String ID, String PW, String City, long Money, String terms) throws SQLException {
+		con = dbConnect.getConnection();
+		cstmt = con.prepareCall("{call MODIFY_USER(?, ?, ?, ?, ?)}");
+		try {
+			cstmt.setString(1, ID);	//고객아이디
+			cstmt.setString(2, PW);
+			cstmt.setString(3, City);
+			cstmt.setLong(4, Money);		//건물일련번호
+			cstmt.setString(5, terms);
+			cstmt.executeQuery();
+			System.out.println("회원정보수정 성공!");
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

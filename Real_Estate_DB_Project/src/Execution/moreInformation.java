@@ -151,7 +151,7 @@ public class moreInformation extends JFrame {
 					System.out.println("계약");
 					System.out.println(building.getBuildingNum());
 					System.out.println(userId);
-					DBcstmt.ContractBuilding(userId, building.getBuildingNum());	//DB_CallableStatement 파일에 있는 건물계약 함수호출
+					DBcstmt.ContractBuilding(brokerId, userId, building.getBuildingNum());	//DB_CallableStatement 파일에 있는 건물계약 함수호출
 					frame.dispose();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
