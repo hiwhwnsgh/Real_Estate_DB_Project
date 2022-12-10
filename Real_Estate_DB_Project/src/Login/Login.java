@@ -33,6 +33,7 @@ public class Login extends JFrame {
 	private String star="";
 	private JButton btnSignUp;
 	private DB_PrepareStatement DBpstmt=new DB_PrepareStatement();
+	public String ID;
 	ImageIcon img = new ImageIcon("images/SignUpImage.png");
 	public Login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,9 +83,10 @@ public class Login extends JFrame {
 		JButton btnLogin = new JButton("로그인");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String ID=ID_textField.getText();
+				ID=ID_textField.getText();
 				String PW=inputPW;
 				try {
+					System.out.println(ID);
 					if(DBpstmt.IsIDPWTrue(ID,PW)) {
 						new main(ID_textField.getText());
 						dispose();
@@ -114,7 +116,10 @@ public class Login extends JFrame {
 			}			
 		});
 	}
-	
+
+//	public String id() {
+//		return ID;
+//	}
 	class HintTextField extends JTextField {  
 
 		Font gainFont = new Font("Tahoma", Font.PLAIN, 11);  

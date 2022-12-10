@@ -22,7 +22,7 @@ class mainJPanel extends JPanel {
 	private JButton UserEditButton;
 	private MainPanel frame;
 
-	public mainJPanel(MainPanel framem,String userId) {
+	public mainJPanel(MainPanel frame,String userId) {
 		this.frame = frame;
 
 		setLayout(null);

@@ -12,6 +12,10 @@ public class Building {
 	private String BrokerId;
 	private String SellerId;
 	private Seller seller = new Seller();
+	private int BuildingNum;
+	public void setBuildingNum(int BuildingNum) {
+		this.BuildingNum = BuildingNum;
+	}
 	public void setAddress(String Address) {
 		this.Address = Address;
 	}
@@ -35,6 +39,9 @@ public class Building {
 	}
 	public void setCondition(String condition) {
 		this.condition = condition;
+	}
+	public int getBuildingNum() {
+		return BuildingNum;
 	}
 	public String getCondition() {
 		return condition;

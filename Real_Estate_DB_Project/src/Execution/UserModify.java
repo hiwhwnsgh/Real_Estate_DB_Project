@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 
 public class UserModify {
@@ -69,7 +71,7 @@ public class UserModify {
 		conditionComboBox.setBounds(45, 425, 250, 23);
 		frame.getContentPane().add(conditionComboBox);
 		
-		idTextField = new JTextField();
+		idTextField = new JTextField(userId); // 유저아이디(변경불가능)
 		idTextField.setEnabled(false);
 		idTextField.setBounds(45, 125, 250, 21);
 		frame.getContentPane().add(idTextField);
@@ -98,13 +100,22 @@ public class UserModify {
 //		IdCheckButton.setBounds(307, 124, 91, 23);
 //		frame.getContentPane().add(IdCheckButton);
 		
-		JButton SignUpButton = new JButton("수정");
-		SignUpButton.setBounds(45, 475, 250, 40);
-		frame.getContentPane().add(SignUpButton);
+		JButton ModifyButton = new JButton("수정");
+		ModifyButton.setBounds(45, 475, 250, 40);
+		frame.getContentPane().add(ModifyButton);
+		
 		
 		comboBox = new JComboBox(PriceString);
 		comboBox.setBounds(307, 304, 91, 23);
 		frame.getContentPane().add(comboBox);
+		ModifyButton.addActionListener(new ActionListener() {		// 수정버튼 클릭시 이벤트발생
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		JComboBox regionComboBox = new JComboBox(RegionString);
 		regionComboBox.setBounds(45, 370, 250, 23);

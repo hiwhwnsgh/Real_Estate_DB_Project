@@ -11,7 +11,7 @@ public class DB_PrepareStatement {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
-	public void sqlPreparementStatement(String ID, String PW, String city, long money, String terms)
+	public void sqlPreparementStatement(String ID, String PW, String city, long money, String terms) // 회원가입 메소드
 			throws SQLException {
 		String sql = "INSERT INTO 고객 VALUES (?,?,?,?,?)";
 		con = dbConnect.getConnection();
@@ -88,7 +88,7 @@ public class DB_PrepareStatement {
 	}
 	public Building BuildingInfoSearch(String buildingAddress) throws SQLException {
 		Building building = new Building();
-		String sql = "select 주소,완공시기,건물형태,시세,건설사,계약조건 from 건물 where 주소 = ?";
+		String sql = "select 주소,완공시기,건물형태,시세,건설사,계약조건, 일련번호 from 건물 where 주소 = ?";
 		con = dbConnect.getConnection();
 		pstmt = con.prepareStatement(sql);
 		pstmt.setString(1, buildingAddress);
@@ -100,6 +100,7 @@ public class DB_PrepareStatement {
 			building.setSellPrice(rs.getLong(4));
 			building.setCompany(rs.getString(5));
 			building.setCondition(rs.getString(6));
+			building.setBuildingNum(rs.getInt(7));
 		}
 		return building;
 	}

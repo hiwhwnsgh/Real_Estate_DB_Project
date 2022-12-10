@@ -4,7 +4,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
+import java.awt.TextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -31,10 +31,10 @@ public class SignUp extends JFrame {
 	private JLabel conditionLabel;
 	private String[] ConditionString = {"월세","전세","매매"};
 	private JTextField idTextField;
-	private JTextField pwTextField;
+	private TextField pwTextField;
 	private JTextField capitalTextField;
 	private JLabel CheckPwLabel;
-	private JTextField checkPwTextField;
+	private TextField checkPwTextField;
 	private JComboBox comboBox, regionComboBox, conditionComboBox;
 	private String[] PriceString = {"만원","억원"};
 	private String[] RegionString = {"서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원", "제주"};
@@ -89,7 +89,8 @@ public class SignUp extends JFrame {
 		frame.getContentPane().add(idTextField);
 		idTextField.setColumns(10);
 		
-		pwTextField = new JTextField();
+		pwTextField = new TextField();
+		pwTextField.setEchoChar('*');
 		pwTextField.setColumns(10);
 		pwTextField.setBounds(45, 185, 250, 21);
 		frame.getContentPane().add(pwTextField);
@@ -103,7 +104,8 @@ public class SignUp extends JFrame {
 		CheckPwLabel.setBounds(45, 225, 125, 15);
 		frame.getContentPane().add(CheckPwLabel);
 		
-		checkPwTextField = new JTextField();
+		checkPwTextField = new TextField();
+		checkPwTextField.setEchoChar('*'); // 암호화
 		checkPwTextField.setColumns(10);
 		checkPwTextField.setBounds(45, 245, 250, 21);
 		frame.getContentPane().add(checkPwTextField);
@@ -118,10 +120,10 @@ public class SignUp extends JFrame {
 				// TODO Auto-generated method stub
 				ID1 = idTextField.getText();
 				try {
-					if(DBcstmt.sqlCallableStatement(ID1) == true)
+					if(DBcstmt.sqlCallableStatement(ID1) == true)	// 중복체크를 위한 CallableStatement 함수 호출
 						JOptionPane.showMessageDialog(null, "사용가능한 아이디입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
 					
-					else
+					else	// 함수호출 리턴값이 false일때 (회원가입 불가능)
 						JOptionPane.showMessageDialog(null, "중복된 아이디 입니다.", "경고", JOptionPane.WARNING_MESSAGE);
 					
 				} catch (SQLException e1) {
@@ -142,7 +144,7 @@ public class SignUp extends JFrame {
 				String IID = idTextField.getText();
 				String IPW = pwTextField.getText();
 				String IPW2 = checkPwTextField.getText();
-				if(!IPW.equals(IPW2)) {
+				if(!IPW.equals(IPW2)) {		// 비밀번호 똑같은지 확인
 					JOptionPane.showMessageDialog(null, "비밀번호 불일치!", "경고", JOptionPane.WARNING_MESSAGE);
 					return;
 				}
