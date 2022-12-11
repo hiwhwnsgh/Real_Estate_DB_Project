@@ -89,11 +89,11 @@ public class BuildingSearch extends JFrame {
 		scrollPane.setBounds(18, 211, 400, 275);
 		contentPane.add(scrollPane);
 		
-		JRadioButton UpRadioButton = new JRadioButton("높은순");
+		JRadioButton UpRadioButton = new JRadioButton("이상");
 		UpRadioButton.setBounds(265, 145, 68, 23);
 		contentPane.add(UpRadioButton);
 		
-		JRadioButton DownRadioButton = new JRadioButton("낮은순");
+		JRadioButton DownRadioButton = new JRadioButton("이하");
 		DownRadioButton.setBounds(193, 145, 68, 23);
 		DownRadioButton.setSelected(true);
 		contentPane.add(DownRadioButton);

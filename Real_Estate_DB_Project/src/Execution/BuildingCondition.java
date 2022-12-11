@@ -24,7 +24,7 @@ public class BuildingCondition extends JFrame {
 	private JTable brokerTable;
 	private String[] brokerHeader = { "이름", "전화번호","매물개수", "위치" };
 	private String[] buildingHeader = { "건물형태", "주소", "계약조건" };
-	private String[] RegionString = { "전체", "서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원",
+	private String[] RegionString = { "전체", "서울", "진주", "인천", "부산", "포항", "대전", "대구", "마산", "광주", "전북", "울산", "제주",
 			"제주" };
 	private int[] columnsSize = { 90, 150, 165 };
 	private JScrollPane BuildingScroll;
