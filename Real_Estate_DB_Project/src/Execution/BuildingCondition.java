@@ -22,7 +22,7 @@ public class BuildingCondition extends JFrame {
 	private JScrollPane brokerScroll;
 	private JPanel contentPane;
 	private JTable brokerTable;
-	private String[] brokerHeader = { "이름", "전화번호", "위치" };
+	private String[] brokerHeader = { "이름", "전화번호","매물개수", "위치" };
 	private String[] buildingHeader = { "건물형태", "주소", "계약조건" };
 	private String[] RegionString = { "전체", "서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원",
 			"제주" };
@@ -108,7 +108,7 @@ public class BuildingCondition extends JFrame {
 			}
 			brokerModel.setNumRows(0);
 			for (int i = 0; i < brokerList.size(); i++) {
-				Object obj[] = { brokerList.get(i).getName(), brokerList.get(i).getPhoneNumber(),
+				Object obj[] = { brokerList.get(i).getName(), brokerList.get(i).getPhoneNumber(),brokerList.get(i).getCount(),
 						brokerList.get(i).getAddress() };
 				brokerModel.addRow(obj);
 			}

@@ -62,7 +62,7 @@ class userPanel extends JPanel {
 		this.frame = frame;
 		UserEditButton = new JButton("회원 정보 수정");
 		UserEditButton.setFont(new Font("맑은 고딕", Font.BOLD, 22));
-		UserEditButton.setBounds(60, 295, 264, 200);
+		UserEditButton.setBounds(60, 175, 264, 60);
 		add(UserEditButton);
 		UserEditButton.addActionListener(new ActionListener() {	// 회원정보 수정 창띄우기
 			

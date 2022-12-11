@@ -33,4 +33,7 @@ public class Broker {
 	public String getId(){
 		return BrokerId;
 	}
+	public int getCount() {
+		return count;
+	}
 }
