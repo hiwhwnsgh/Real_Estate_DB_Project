@@ -109,7 +109,7 @@ public class UserModify {
 		JComboBox regionComboBox = new JComboBox(RegionString);
 		regionComboBox.setBounds(45, 370, 250, 23);
 		frame.getContentPane().add(regionComboBox);
-
+		frame.setLocationRelativeTo(null);
 		comboBox = new JComboBox(PriceString);
 		comboBox.setBounds(307, 304, 91, 23);
 		frame.getContentPane().add(comboBox);
@@ -137,7 +137,6 @@ public class UserModify {
 
 
 				try {
-					System.out.println("작동");
 					DBcstmt.SqlModifyBuilding(userId ,NewPW, Newcity, Newmoney, Newterms);
 					JOptionPane.showMessageDialog(null, "회원정보 수정완료!", "알림", JOptionPane.INFORMATION_MESSAGE);
 					frame.dispose();

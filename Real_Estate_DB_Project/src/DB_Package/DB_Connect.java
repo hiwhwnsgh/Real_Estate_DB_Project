@@ -14,7 +14,6 @@ public class DB_Connect {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(url, id, password);
-			System.out.println("DB 연결 완료");
 			stmt = conn.createStatement();
 		} catch (ClassNotFoundException e) {
 			System.out.println("JDBC 드라이버 로드 에러");

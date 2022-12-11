@@ -47,7 +47,7 @@ public class BuildingSearch extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		frame.getContentPane().add(contentPane);
-		
+		frame.setLocationRelativeTo(null);
 		JLabel areaLabel = new JLabel("지역");
 		areaLabel.setBounds(18, 10, 57, 15);
 		contentPane.add(areaLabel);

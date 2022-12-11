@@ -86,7 +86,6 @@ public class Login extends JFrame {
 				ID=ID_textField.getText();
 				String PW=inputPW;
 				try {
-					System.out.println(ID);
 					if(DBpstmt.IsIDPWTrue(ID,PW)) {
 						new main(ID_textField.getText());
 						dispose();

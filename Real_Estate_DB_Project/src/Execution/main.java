@@ -40,7 +40,7 @@ public class main extends JFrame {
 		frame = new JFrame("메인화면");
 		frame.setBounds(100, 100, 465, 330);
 		frame.setVisible(true);
-		
+		frame.setLocationRelativeTo(null);
 		contentPane = new MainPanel();
 		contentPane.mJPanel = new mainJPanel(contentPane,userId);
 		contentPane.uJPanel = new userPanel(contentPane,userId);
