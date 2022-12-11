@@ -102,7 +102,7 @@ public class Login extends JFrame {
 		});
 		btnLogin.setBounds(237, 114, 85, 62);
 		contentPane.add(btnLogin);
-		
+		setLocationRelativeTo(null);
 		btnSignUp = new JButton(img);
 		btnSignUp.setBorderPainted(false);
 		btnSignUp.setFocusPainted(false);

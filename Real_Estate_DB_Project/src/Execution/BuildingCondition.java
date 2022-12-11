@@ -52,7 +52,7 @@ public class BuildingCondition extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		frame.getContentPane().add(contentPane);
-
+		frame.setLocationRelativeTo(null);
 		comboBox = new JComboBox(RegionString);
 		comboBox.setBounds(12, 31, 326, 21);
 		contentPane.add(comboBox);

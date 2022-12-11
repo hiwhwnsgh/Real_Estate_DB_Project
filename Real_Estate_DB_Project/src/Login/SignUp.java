@@ -180,7 +180,7 @@ public class SignUp extends JFrame {
 		comboBox = new JComboBox(PriceString);
 		comboBox.setBounds(307, 304, 91, 23);
 		frame.getContentPane().add(comboBox);
-		
+		frame.setLocationRelativeTo(null);
 		regionComboBox = new JComboBox(RegionString);
 		regionComboBox.setBounds(45, 370, 250, 23);
 		frame.getContentPane().add(regionComboBox);

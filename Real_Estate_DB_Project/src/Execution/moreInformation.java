@@ -136,7 +136,7 @@ public class moreInformation extends JFrame {
 		ConditionTextField.setColumns(10);
 		ConditionTextField.setBounds(112, 270, 274, 21);
 		contentPane.add(ConditionTextField);
-
+		frame.setLocationRelativeTo(null);
 		JButton contractButton = new JButton("건물 계약");
 		contractButton.setBorderPainted(false);
 		contractButton.setBackground(new Color(255, 228, 196));
