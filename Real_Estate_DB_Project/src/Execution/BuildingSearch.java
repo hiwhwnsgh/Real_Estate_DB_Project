@@ -32,7 +32,7 @@ public class BuildingSearch extends JFrame {
 	private String[] ConditionString = {"월세","전세","매매"};
 	private String[] PriceString = {"만원","억원"};
 	private String[] buildingHeader = {"이름","주소","조건","가격"};
-	private String[] RegionString = {"전체","서울", "경기", "인천", "부산", "춘천", "대전", "대구", "전남", "전북", "경북", "경남", "강원", "제주"};
+	private String[] RegionString = {"전체", "서울", "진주", "인천", "부산", "포항", "대전", "대구", "마산", "광주", "전북", "울산", "제주"};
 	private JTable table;
 	private DB_PrepareStatement DBpstmt = new DB_PrepareStatement();
 	private Vector<Building> buildingList = new Vector<>();

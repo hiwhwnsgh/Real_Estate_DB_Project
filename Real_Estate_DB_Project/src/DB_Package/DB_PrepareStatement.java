@@ -25,7 +25,6 @@ public class DB_PrepareStatement {
 			pstmt.setString(5, terms);
 
 			if (pstmt.executeUpdate() == 1) {
-				System.out.println("회원가입 성공!");
 			} else {
 				System.out.println("회원가입 실패!");
 			}

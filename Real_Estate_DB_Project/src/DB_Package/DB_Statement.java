@@ -42,5 +42,9 @@ public class DB_Statement {
 		}
 		return VBuilding;
 	}
-	
+	public String userPriceSearch(String sqlQuery)  throws SQLException {
+		rs = dbConnect.resultExecuteQuery(sqlQuery);
+		rs.next();
+		return rs.getString(1);
+	}
 }

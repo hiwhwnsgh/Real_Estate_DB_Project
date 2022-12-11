@@ -24,8 +24,7 @@ public class BuildingCondition extends JFrame {
 	private JTable brokerTable;
 	private String[] brokerHeader = { "이름", "전화번호","매물개수", "위치" };
 	private String[] buildingHeader = { "건물형태", "주소", "계약조건" };
-	private String[] RegionString = { "전체", "서울", "진주", "인천", "부산", "포항", "대전", "대구", "마산", "광주", "전북", "울산", "제주",
-			"제주" };
+	private String[] RegionString = { "전체", "서울", "진주", "인천", "부산", "포항", "대전", "대구", "마산", "광주", "전북", "울산", "제주"};
 	private int[] columnsSize = { 90, 150, 165 };
 	private JScrollPane BuildingScroll;
 	private JTable buildingTable;
@@ -90,6 +89,17 @@ public class BuildingCondition extends JFrame {
 		BuildingScroll = new JScrollPane(buildingTable);
 		BuildingScroll.setBounds(454, 64, 400, 284);
 		contentPane.add(BuildingScroll);
+		
+		JLabel PriceLabel = new JLabel("자본금 : ");
+		PriceLabel.setBounds(463, 34, 57, 15);
+		contentPane.add(PriceLabel);
+		
+		JLabel userPriceLabel = new JLabel("");
+		userPriceLabel.setBounds(516, 34, 272, 15);
+		sql = "select 자본금 from 고객 where \"고객ID\" = '"+userId+"'";
+		String price = dExecution.userPriceSearch(sql);
+		userPriceLabel.setText(price);
+		contentPane.add(userPriceLabel);
 
 	}
 
@@ -146,6 +156,7 @@ public class BuildingCondition extends JFrame {
 				String addressSelected = buildingInfoTable.getModel().getValueAt(Row, 1).toString();
 				try {
 					new moreInformation(addressSelected,brokerId,userId);
+					frame.dispose();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

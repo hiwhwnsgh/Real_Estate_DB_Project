@@ -21,13 +21,10 @@ public class DB_CallableStatement {
 			cstmt.setString(1, ID1);	// SignUp 파일에서 매개변수를 넘겨 받을 후 프로시저 호출
 			cstmt.registerOutParameter(2, Types.INTEGER);	// 아웃 파라미터 저장
 			cstmt.executeQuery();
-			System.out.println(cstmt.getInt(2));
 			if(cstmt.getInt(2) == 0) {	// getInt(2) 가 0일때는 중복된 아이디가 없다는 뜻(중복된 아이디 갯수가 0)
-				System.out.println("성공");
 				return true;		// true 값 반환하여 SignUp 파일로 전달
 			}
 			else {
-				System.out.println("실패");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,11 +49,9 @@ public class DB_CallableStatement {
 			cstmt.setInt(3, B_Num);		//건물일련번호
 			cstmt.executeQuery();
 			con.commit();		// 커밋
-			System.out.println("계약성공!");
 			JOptionPane.showMessageDialog(null, "계약 완료!", "알림", JOptionPane.INFORMATION_MESSAGE);
 		} catch(SQLException e) {
 			JOptionPane.showMessageDialog(null, "자본금이 부족합니다.", "계약실패", JOptionPane.WARNING_MESSAGE);
-			System.out.println("계약실패");
 			e.printStackTrace();
 		}
 	}
@@ -71,7 +66,7 @@ public class DB_CallableStatement {
 			cstmt.setLong(4, Money);		//건물일련번호
 			cstmt.setString(5, terms);
 			cstmt.executeQuery();
-			System.out.println("회원정보수정 성공!");
+			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
