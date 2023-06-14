@@ -4,7 +4,7 @@
 - 기여자 : 조준호, 남태윤, 한유정
 
 ## 산출물
-[☞ 프로젝트 결과보고서](https://drive.google.com/drive/u/0/folders/1mmxX3oDgLgrwweR8beh7WqZt-CrjiKNJ)
+[☞ 프로젝트 결과보고서](https://drive.google.com/file/d/1wjmuHzxoI1mJ_h51eT-rpeldDfsC9c_U/view?usp=sharing)
 
 ## 목표
 - 부동산 중개 및 관리 시스템을 제작하여 부동산을 이용하는 임대인, 고객, 중개인 모두에게 정보제공을 목적으로 개발
