@@ -193,7 +193,7 @@
 
 </details>
 
-## Java 구현
+## 소프트웨어 구현
 ### Statement 구현
 
 <details>
